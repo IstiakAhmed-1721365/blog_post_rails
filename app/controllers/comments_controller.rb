@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
     def create
 		#byebug
-		@post = Post.find(params[:post_id])
+		#@post = Post.find(params[:post_id])
 	 	@comment = @post.comments.new(comment_params.merge(user_id: current_user.id)) #create private function for allowed params
 		if @comment.save
 			CommentMailer.comment_created.deliver_later
