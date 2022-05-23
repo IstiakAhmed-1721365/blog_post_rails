@@ -1,0 +1,12 @@
+<h1>User List</h1>
+
+
+<ul>
+  <% @users.each do |f| %>
+    <li>
+      <a href="/users/<%= f.id %>">
+        <%= f.email %> 
+      </a>
+    </li>
+  <% end %>
+</ul>
