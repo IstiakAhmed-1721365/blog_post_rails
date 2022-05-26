@@ -27,4 +27,7 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
   
+  def index
+    @user = User.all
+  end
 end

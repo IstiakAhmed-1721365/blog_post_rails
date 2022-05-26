@@ -1,23 +1,34 @@
-<%= @user = current_user %>
+<div>
+    <% if @user.id == current_user.id %>
 
-<% provide(:title, @title) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      
-      <h1><%= @user.id %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>Posts:</b> <%= @user.posts.count %></span>
-    </section>
+        <p>
+        <strong>Email:</strong>
+            <%= @user.email %>
+        </p>
 
-  </aside>
-  <div class="col-md-8">
-    <h3><%= @title %></h3>
-    <% if @users.any? %>
-      <ul class="users follow">
-        <%= render @users %>
-      </ul>
-      <%= will_paginate %>
-    <% end %>
-  </div>
+          
+        <%= link_to 'Back', users_path %>
+
+        <% elsif current_user.followers.include?(@user) %>
+        
+            <p>
+            <strong>Email:</strong>
+                <%= @user.email %>
+            </p>
+
+            
+            <%= link_to 'Back', root_path %>
+            <h5><%= button_to "Unfollow", unfollow_user_path, method: "POST" %></h5>
+        <% else %>
+        
+            <p>
+            <strong>Email:</strong>
+                <%= @user.email %>
+            </p>
+         
+       
+            <%= link_to 'Back', users_path %>
+            <h5><%= button_to "Follow", follow_user_path, method: "POST"  %></h5>
+    <% end%>
+    <br>
 </div>
